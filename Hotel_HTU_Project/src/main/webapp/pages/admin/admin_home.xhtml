@@ -1,0 +1,255 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:p="http://primefaces.org/ui">
+<h:head>
+
+	<title>JoSummer</title>
+	<p:messages></p:messages>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js'></script>
+	<link rel="stylesheet" href="css/admin_home.css" />
+
+
+
+
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+	<script>
+		jQuery.curCSS = function(element, prop, val) {
+			return jQuery(element).css(prop, val);
+		};
+	</script>
+	<style>
+.panel-card {
+	margin-bottom: 8px !important;
+	margin-right: 10px;
+}
+
+body .ui-widget:not(.pi), body .ui-widget .ui-widget:not(.pi) {
+	font-family: "Open Sans", "Helvetica Neue", sans-serif;
+	font-size: 20px;
+	
+}
+
+body .ui-panel .ui-panel-titlebar {
+	border: 1px solid #191919;
+	background: rgb(51, 51, 51);
+	color: #dedede;
+	padding: .571em 1em .571em 1em;
+	font-weight: 400;
+}
+</style>
+</h:head>
+<h:body>
+
+	<div style="margin-bottom: 50px;" class="header">
+		<div style="background: rgba(38, 38, 38, 1);" class="navbar navbar-inverse navbar-fixed-top">
+			<div style="background: rgba(38, 38, 38, 1);" class="container-fluid">
+				<h:form>
+					<div class="navbar navbar-default navbar-fixed-top">
+						<div>
+							<div style="background: rgba(38, 38, 38, 1);" class="navbar-header">
+								<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+									<span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+								</button>
+								<p:graphicImage style="margin-top: 10px; margin-left: 10px; margin-right: 20px;" value="/plugins/images/Jo.png" width="110px"
+									height="40px" />
+							</div>
+							<div style="background: rgba(38, 38, 38, 1);" class="collapse navbar-collapse" id="myNavbar">
+								<ul style="margin-right: 10px" class="nav navbar-nav navbar-right">
+									<li class="active"><p:commandLink value="Home" /></li>
+									<li><p:commandLink value="Administration" action="#{mbAdminAdministration.adminsrationButton}" /></li>
+									<li><p:commandLink value="Status" /></li>
+									<li><p:commandLink value="Users" /></li>
+									<li><p:commandLink action="#{mbAdminHome.logoutButton}" value="LogOut" /></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</h:form>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+<h3 style="margin-left: 40px!important;">Overview</h3>
+		<div align="center" style="margin-left: 20px" class="col-sm-12-text-center">
+			<div class="col-sm-3">
+				<p:panel styleClass="panel-card" header="Available Hotels">
+					<i class="pi pi-check" style="font-size: 2rem"></i>
+					
+					<p:outputLabel value="#{mbAdminHome.availableHotels}" />
+				</p:panel>
+			</div>
+			<div class="col-sm-3">
+				<p:panel styleClass="panel-card" header="Hotels">
+					<p:outputLabel value="#{mbAdminHome.countHotels}" />
+				</p:panel>
+			</div>
+			<div class="col-sm-3">
+				<p:panel styleClass="panel-card" header="Reservations">
+					<p:outputLabel value="#{mbAdminHome.countReservations}" />
+				</p:panel>
+			</div>
+			<div class="col-sm-3">
+				<p:panel styleClass="panel-card" header="Companies">
+					<p:outputLabel value="#{mbAdminHome.countCompany}" />
+				</p:panel>
+			</div>
+			<div class="col-sm-3">
+				<p:panel styleClass="panel-card" header="Cities">
+					<p:outputLabel value="#{mbAdminHome.countCity}" />
+				</p:panel>
+			</div>
+			<div class="col-sm-3">
+				<p:panel styleClass="panel-card" header="Total Rooms">
+					<p:outputLabel value="#{mbAdminHome.countRooms}" />
+				</p:panel>
+			</div>
+			<div class="col-sm-3">
+				<p:panel styleClass="panel-card" header="Guests">
+					<p:outputLabel value="#{mbAdminHome.countGuests}" />
+				</p:panel>
+			</div>
+			<div class="col-sm-3">
+				<p:panel styleClass="panel-card" header="Category">
+					<p:outputLabel value="#{mbAdminHome.countCategory}" />
+				</p:panel>
+			</div>
+		</div>
+
+		<div style="margin-left: 20px" class="col-sm-6">
+			<h:form>
+				<div style="background: inherit;" class="card">
+					<h4>Reservations</h4>
+					<p:dataTable var="reservation" value="#{mbAdminHome.listReservation}">
+						<p:column style="width: 30px;" headerText="ID">
+							<h:outputText value="#{reservation.id}" />
+						</p:column>
+
+						<p:column headerText="Guest Name">
+							<h:outputText value="#{reservation.guest.firstName}" />
+						</p:column>
+
+						<p:column headerText="Hotel">
+							<h:outputText value="#{reservation.hotel.name}" />
+						</p:column>
+
+						<p:column headerText="Room">
+							<h:outputText value="#{reservation.room.roomType.name}" />
+						</p:column>
+					</p:dataTable>
+				</div>
+			</h:form>
+		</div>
+		<div style="margin-left: 10px" class="col-sm-5">
+			<h:form>
+				<div style="background: inherit;" class="card">
+					<h4>Hotels</h4>
+					<p:tabView value="#{mbAdminHome.listHotel}" var="hotel">
+						<p:tab title="#{hotel.name}">
+							<div class="product">
+								<div class="product-list-item">
+									<p:graphicImage name="demo/images/product/#{product.image}" />
+									<div class="product-list-detail">
+										<div class="product-name">#{hotel.name}</div>
+										<div class="product-description">#{hotel.description}</div>
+										<p:rating readonly="true" value="#{hotel.rate}" />
+										<i class="pi pi-tag product-category-icon" /><span class="product-category">#{hotel.category.name}</span>
+									</div>
+									<div class="product-list-action">
+										<h:outputText value="#{hotel.is_active}" styleClass="product-price">
+
+										</h:outputText>
+										<span class="product-badge status}">#{hotel.company.name}</span>
+									</div>
+								</div>
+							</div>
+						</p:tab>
+					</p:tabView>
+				</div>
+			</h:form>
+		</div>
+		<div style="margin-left: 10px" class="col-sm-12">
+		
+		<div class="product card">
+    <h:form id="form">
+        <p:messages id="messages"/>
+        
+        <p:dataView var="room" value="#{mbAdminHome.listRoom}" multiViewState="true" rows="7"
+                    paginator="true"
+                    rowsPerPageTemplate="6,12,16"
+                    paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                    gridIcon="pi pi-th-large" listIcon="pi pi-bars">
+
+            <p:dataViewGridItem>
+                <div class="product-grid-item card border-1">
+                    <div class="product-grid-item-top">
+                        <div>
+                            <i class="pi pi-tag product-category-icon"/>
+                            <span class="product-category">Room Type: #{room.roomType.name}</span>
+                        </div>
+                        <span class="product-badge status-true}">Room No: #{room.room_No}</span>
+                    </div>
+                    <div class="product-grid-item-content">
+                        <p:graphicImage width="350px" height="220px" value="/plugins/images/#{room.images}" library="demo"/>
+                        <div class="product-name">#{room.hotel.name}</div>
+                        <div class="product-description">#{room.description}</div>
+                        <p:rating readonly="true" value="#{room.rate}"/>
+                    </div>
+                    <div class="product-grid-item-bottom">
+                        <h:outputText value="#{room.price}" styleClass="product-price">
+                            <f:convertNumber currencySymbol="$" type="currency"/>
+                        </h:outputText>
+                    </div>
+                </div>
+            </p:dataViewGridItem>
+
+            <p:dataViewListItem>
+                <div class="row">
+                <div style="margin-bottom: 20px;" class="col-sm-2">
+                    <p:graphicImage width="200px" height="150px" value="/plugins/images/#{room.images}"/>
+                    <div class="product-list-detail"></div></div>
+                     <div class="col-sm-4"> 
+                       <div class="product-name">#{room.roomType.name}</div>
+                        <div class="product-description">#{room.description}</div>
+                        <p:rating readonly="true" value="#{room.rate}"/>
+                        <i class="pi pi-tag product-category-icon"/><span
+                            class="product-category">#{room.hotel.name}</span>
+                    
+                    
+                    
+                        <h:outputText value="#{room.price}" styleClass="product-price">
+                            <f:convertNumber currencySymbol="$" type="currency"/>
+                        </h:outputText>
+                        <span class="product-badge status">#{room.room_No}</span>
+                    </div>
+                </div>
+            </p:dataViewListItem>
+        </p:dataView>
+    </h:form>
+</div>
+		
+		
+		
+		
+		
+		
+	</div>
+</div>
+	<div style="background: rgba(38, 38, 38, 1); margin-top: 20px;" class="container-fluid">
+		<div class="row">
+			<div align="center" class="col-sm-12">
+				<p:graphicImage styleClass="image" value="/plugins/images/Jo.png" width="250px" height="130px" style="margin-top: 30px;" />
+			</div>
+			<div align="center" class="col-sm-12">
+				<p:outputLabel style="color: white" value="JoSummer.com" />
+			</div>
+		</div>
+	</div>
+
+</h:body>
+</html>

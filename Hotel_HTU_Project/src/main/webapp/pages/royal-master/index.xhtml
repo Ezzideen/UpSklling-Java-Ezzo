@@ -1,0 +1,595 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui">
+<h:head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<link rel="icon" href="image/favicon.png" type="image/png" />
+	<title>JoSummer</title>
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="css/bootstrap.css" />
+	<link rel="stylesheet" href="vendors/linericon/style.css" />
+	<link rel="stylesheet" href="css/font-awesome.min.css" />
+	<link rel="stylesheet" href="vendors/owl-carousel/owl.carousel.min.css" />
+	<link rel="stylesheet" href="vendors/bootstrap-datepicker/bootstrap-datetimepicker.min.css" />
+	<link rel="stylesheet" href="vendors/nice-select/css/nice-select.css" />
+	<link rel="stylesheet" href="vendors/owl-carousel/owl.carousel.min.css" />
+	<!-- main css -->
+	<link rel="stylesheet" href="css/style.css" />
+	<link rel="stylesheet" href="css/responsive.css" />
+	<style>
+body .ui-dataview .ui-dataview-content {
+    padding: .571em 1em;
+    border: 1px solid #000000;
+    background-color: #ffffff;
+    color: #000000;
+    padding: .571em 1em;
+}
+	body .ui-dataview .ui-dataview-header, body .ui-dataview .ui-dataview-footer {
+    background-color: #ffffff;
+    border: 1px solid #ffffff;
+    color: #ffffff;
+    padding: .571em 1em .571em 1em;
+    font-weight: 400;
+}
+body .ui-paginator .ui-paginator-pages .ui-paginator-page.ui-state-active {
+    background-color: #ffffff;
+    color: #212121;
+}
+body .ui-dataview .ui-dataview-data>tr {
+    background-color: #dcdcdc;
+    color: #ffffff;
+    border: 1px solid #000000;
+}
+body .ui-paginator {
+    background-color: yellow;
+    background: black;
+    border: 1px solid #000000;
+    padding: 0;
+}
+body .ui-dataview thead th {
+	background-color: #ffffff;
+	border: 1px solid #000000;
+	color: #000000;
+	padding: .571em .857em;
+	-webkit-box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	box-sizing: content-box;
+}
+
+</style>
+	
+</h:head>
+<h:body>
+	<!--================Header Area =================-->
+	<header class="header_area">
+	<h:form>
+	<div class="container">
+		<nav class="navbar navbar-expand-lg navbar-light"> <!-- Brand and toggle get grouped for better mobile display --> <a
+			class="navbar-brand logo_h" href="index.xhtml"><p:graphicImage value="/pages/royal-master/image/Jo2.png" width="150px" height="auto" />
+		</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+		</button>
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+			<ul class="nav navbar-nav menu_nav ml-auto">
+				<li class="nav-item active"><a class="nav-link" href="index.xhtml">Home</a></li>
+				<li class="nav-item"><a class="nav-link" href="about.xhtml">About us</a></li>
+				<li class="nav-item"><a class="nav-link" href="elements.xhtml">Check Reservation</a></li>
+				<li class="nav-item"><a class="nav-link" href="gallery.xhtml">Gallery</a></li>
+				<li class="nav-item"><a class="nav-link" href="contact.xhtml">Contact</a></li>
+				<li class="nav-item"><p:commandButton rendered="#{!(mbReservation.loginState)}" style="margin-top: 25px!important;" styleClass="button_hover" action="#{mbReservation.signUp}" value="Login/Signup" /></li>
+				<li class="nav-item"><p:commandButton rendered="#{mbReservation.loginState}" style="margin-top: 25px!important;" styleClass="button_hover" actionListener="#{mbReservation.restLogin}" action="#{mbReservation.signUp}" value="Log out" /></li>
+				<li class="nav-item"><a style="color: black;" class="nav-link" href="contact.xhtml">#{mbReservation.user.username}</a></li>
+			</ul>
+		</div>
+		</nav>
+	</div>
+	</h:form>
+	</header>
+	<!--================Header Area =================-->
+
+	<!--================Banner Area =================-->
+	<section class="banner_area">
+	<div style="padding-bottom: 50px;" class="row">
+		<div align="center" class="col-xs-12">
+			<h:form>
+				<b:carousel id="tiovivo" style="width:100%" interval="2500">
+					<b:carouselItem>
+						<h:graphicImage value="/plugins/images/room3.jpg" alt="Valladolid" style="width: 100%; height: 600px" />
+						<b:carouselCaption>
+							<h2>You'll love JoSummer!</h2>
+
+						</b:carouselCaption>
+					</b:carouselItem>
+					<b:carouselItem caption="Movenpick has a nice central park.">
+						<h:graphicImage value="/plugins/images/hotel1.jpg" alt="Valladolid" style="width: 100%; height: 600px" />
+					</b:carouselItem>
+					<b:carouselItem caption="Find Your rest!">
+
+						<h:graphicImage value="/plugins/images/room2.jpg" alt="Valladolid" style="width: 100%; height: 600px" />
+					</b:carouselItem>
+					<b:carouselItem>
+						<h:graphicImage value="/plugins/images/room1.jpg" alt="Valladolid" style="width: 100%; height: 600px" />
+						<b:carouselCaption>
+							<h2>Josummer</h2>
+							<p>In Jordan, dry as it is, people love to play with water.</p>
+						</b:carouselCaption>
+					</b:carouselItem>
+					<b:carouselItem caption="Valladolid - a city with a lot of history">
+						<h:graphicImage value="/plugins/images/hotel3.jpg" alt="Valladolid" style="width: 100%; height: 600px" />
+					</b:carouselItem>
+				</b:carousel>
+			</h:form>
+		</div>
+	</div>
+	<div class="booking_table d_flex align-items-center">
+	
+		<div class="overlay bg-parallax" data-stellar-ratio="0.9" data-stellar-vertical-offset="0" data-background=""></div>
+		<div class="container">
+			<div class="banner_content text-center">
+				<h6>Away from monotonous life</h6>
+				<h2>Relax Your Mind</h2>
+				
+				
+			</div>
+		</div>
+	</div>
+	<div class="hotel_booking_area position">
+		<div class="container">
+			<div class="hotel_booking_table">
+				<div class="col-md-3">
+					<h2>
+						Book<br /> Your Room
+					</h2>
+				</div>
+				<div class="col-md-9">
+					<div class="boking_table">
+						<div class="row">
+							<div class="col-md-4">
+								<div class="book_tabel_item">
+								<h:form id="frm-date">
+									<div class="form-group">
+										<div class='input-group date' >
+											<p:datePicker id="checkin" placeholder="Arrival Date" value="#{mbReservation.reservation.startDate}" />
+										</div>
+									</div>
+									<div class="form-group">
+										<div class='input-group date' >
+											<p:datePicker id="checkout" placeholder="Departure Date" value="#{mbReservation.reservation.endDate}" />
+										</div>
+									</div>
+									<p:outputLabel style="color: white;" id="description" value="#{mbReservation.roomDescription}" />
+									<p:outputLabel style="color: yellow; font-size: 20px;" id="cost" value="Cost: #{mbReservation.roomPrice}" />
+									</h:form>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="book_tabel_item">
+								<h:form id="frm-data">
+									<div class="input-group">
+										<p:selectOneMenu id="hotel-Data" value="#{mbReservation.reservation.hotel.id}">
+											<p:ajax event="valueChange" update="Room-Data"  />
+											<f:selectItem itemLabel="Select Hotel" itemValue="#{null}" />
+											<f:selectItems id="hotel-Data-selectItems" value="#{mbReservation.listHotel}" var="Hotel" itemLabel="#{Hotel.name}"
+												itemValue="#{Hotel.id}" />
+										</p:selectOneMenu>
+
+									</div>
+									<div class="input-group">
+										<p:selectOneMenu  id="Room-Data" value="#{mbReservation.reservation.room.id}">
+											<p:ajax event="valueChange" update="frm-img:img,frm-date:description,frm-date:cost" />
+											<f:selectItem itemLabel="Select RoomType" itemValue="#{null}" />
+											<f:selectItems id="Room-Data-selectItems" value="#{mbReservation.listRoomById}" var="Room" itemLabel="#{Room.roomType.name}"
+												itemValue="#{Room.id}" itemDescription="#{Room.description}" />
+										</p:selectOneMenu>
+									</div>
+									</h:form>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="book_tabel_item">
+								<h:form id="frm-img">
+									<div class="input-group">
+										<p:graphicImage id="img" value="/plugins/images/#{mbReservation.roomImage}" width="245px" height="150px" />
+									</div>
+									<p:commandButton styleClass="book_now_btn button_hover" id="botton-pro" action="#{mbReservation.nextPage}"
+						process="@this,frm-date:checkin,frm-date:checkout,frm-data:hotel-Data,frm-data:Room-Data,botton-pro"
+						style="margin-bottom: 20px!important; margin-top: 20px!important; Font-Size: 18px!important;" value="Book Now" />
+									
+									</h:form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</section>
+	<!--================Banner Area =================-->
+
+	<!--================ Accomodation Area  =================-->
+	<section class="accomodation_area section_gap">
+	<div class="container">
+		<div class="section_title text-center">
+			<h2 class="title_color">Hotel Rooms</h2>
+			<p>We all live in an age that belongs to the young at heart. Life that is becoming extremely fast,</p>
+		</div>
+		
+		
+		
+		
+		<h:form>
+	
+		<p:dataView var="room" value="#{mbAdminHome.listRoom}" multiViewState="true" rows="4"
+                    paginator="true"
+                    
+                    paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                    gridIcon="pi pi-th-large" listIcon="pi pi-bars">
+
+            <p:dataViewGridItem>
+             <div class="row mb_30">
+			<div class="col-lg-12 col-sm-12">
+				<div class="accomodation_item text-center">
+					<div class="hotel_img">
+					<h:graphicImage value="/plugins/images/#{room.images}" alt="Valladolid" style="width:100%; height: 300px;" />
+					<a href=""><p:commandButton styleClass="theme_btn button_hover" value="Book" action="#{mbReservation.goToReservation(room)}" /></a>
+					</div>
+					<a href="user_room_reservation_check.xhtml"><h4 class="sec_h4">#{room.roomType.name}</h4></a>
+					<h5>
+						#{room.price}<small>/night</small>
+					</h5>
+				</div>
+			</div>
+		
+		</div>
+            </p:dataViewGridItem>
+
+            <p:dataViewListItem>
+                <div class="row">
+                <div style="margin-bottom: 20px;" class="col-sm-3">
+                    <p:graphicImage width="250px" height="150px" value="/plugins/images/#{room.images}"/>
+                    <div class="product-list-detail"></div></div>
+                     <div class="col-sm-4"> 
+                       <div class="product-name">#{room.roomType.name}</div>
+                        <div class="product-description">#{room.description}</div>
+                        <p:rating readonly="true" value="#{room.rate}"/>
+                        <i class="pi pi-tag product-category-icon"/><span
+                            class="product-category">#{room.hotel.name}</span>
+                            
+                        <h:outputText value="#{room.price}" styleClass="product-price">
+                            <f:convertNumber currencySymbol="$" type="currency"/>
+                        </h:outputText>
+                        <span class="product-badge status">#{room.room_No}</span>
+                    </div>
+                    <div align="right" class="col-sm-4"> 
+                      <p:commandButton styleClass="theme_btn button_hover" value="Book" action="#{mbReservation.goToReservation(room)}" />
+                    </div>
+                </div>
+            </p:dataViewListItem>
+        </p:dataView>
+        	</h:form>
+	</div>
+	</section>
+	<!--================ Accomodation Area  =================-->
+
+	<!--================ Facilities Area  =================-->
+	<section class="facilities_area section_gap">
+	<div class="overlay bg-parallax" data-stellar-ratio="0.8" data-stellar-vertical-offset="0" data-background=""></div>
+	<div class="container">
+		<div class="section_title text-center">
+			<h2 class="title_w">Royal Facilities</h2>
+			<p>Who are in extremely love with eco friendly system.</p>
+		</div>
+		<div class="row mb_30">
+			<div class="col-lg-4 col-md-6">
+				<div class="facilities_item">
+					<h4 class="sec_h4">
+						<i class="lnr lnr-dinner"></i>Restaurant
+					</h4>
+					<p>Usage of the Internet is becoming more common due to rapid advancement of technology and power.</p>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-6">
+				<div class="facilities_item">
+					<h4 class="sec_h4">
+						<i class="lnr lnr-bicycle"></i>Sports CLub
+					</h4>
+					<p>Usage of the Internet is becoming more common due to rapid advancement of technology and power.</p>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-6">
+				<div class="facilities_item">
+					<h4 class="sec_h4">
+						<i class="lnr lnr-shirt"></i>Swimming Pool
+					</h4>
+					<p>Usage of the Internet is becoming more common due to rapid advancement of technology and power.</p>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-6">
+				<div class="facilities_item">
+					<h4 class="sec_h4">
+						<i class="lnr lnr-car"></i>Rent a Car
+					</h4>
+					<p>Usage of the Internet is becoming more common due to rapid advancement of technology and power.</p>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-6">
+				<div class="facilities_item">
+					<h4 class="sec_h4">
+						<i class="lnr lnr-construction"></i>Gymnesium
+					</h4>
+					<p>Usage of the Internet is becoming more common due to rapid advancement of technology and power.</p>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-6">
+				<div class="facilities_item">
+					<h4 class="sec_h4">
+						<i class="lnr lnr-coffee-cup"></i>Bar
+					</h4>
+					<p>Usage of the Internet is becoming more common due to rapid advancement of technology and power.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	</section>
+	<!--================ Facilities Area  =================-->
+
+	<!--================ About History Area  =================-->
+	<section class="about_history_area section_gap">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 d_flex align-items-center">
+				<div class="about_content ">
+					<h2 class="title title_color">
+						About Us <br />Our History<br />Mission Vision
+					</h2>
+					<p>inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the
+						workplace. That’s why it’s crucial that, as women, our behavior on the job is beyond reproach. inappropriate behavior is often
+						laughed.</p>
+					<a href="#" class="button_hover theme_btn_two">Request Custom Price</a>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<img class="img-fluid" src="image/about_bg.jpg" alt="img" />
+			</div>
+		</div>
+	</div>
+	</section>
+	<!--================ About History Area  =================-->
+
+	<!--================ Testimonial Area  =================-->
+	<section class="testimonial_area section_gap">
+	<div class="container">
+		<div class="section_title text-center">
+			<h2 class="title_color">Testimonial from our Clients</h2>
+			<p>The French Revolution constituted for the conscience of the dominant aristocratic class a fall from</p>
+		</div>
+		<div class="testimonial_slider owl-carousel">
+			<div class="media testimonial_item">
+				<img class="rounded-circle" src="image/testtimonial-1.jpg" alt="" />
+				<div class="media-body">
+					<p>As conscious traveling Paupers we must always be concerned about our dear Mother Earth. If you think about it, you travel across
+						her face, and She is the</p>
+					<a href="#"><h4 class="sec_h4">Fanny Spencer</h4></a>
+					<div class="star">
+						<a href="#"><i class="fa fa-star"></i></a> <a href="#"><i class="fa fa-star"></i></a> <a href="#"><i class="fa fa-star"></i></a> <a
+							href="#"><i class="fa fa-star"></i></a> <a href="#"><i class="fa fa-star-half-o"></i></a>
+					</div>
+				</div>
+			</div>
+			<div class="media testimonial_item">
+				<img class="rounded-circle" src="image/testtimonial-1.jpg" alt="" />
+				<div class="media-body">
+					<p>As conscious traveling Paupers we must always be concerned about our dear Mother Earth. If you think about it, you travel across
+						her face, and She is the</p>
+					<a href="#"><h4 class="sec_h4">Fanny Spencer</h4></a>
+					<div class="star">
+						<a href="#"><i class="fa fa-star"></i></a> <a href="#"><i class="fa fa-star"></i></a> <a href="#"><i class="fa fa-star"></i></a> <a
+							href="#"><i class="fa fa-star"></i></a> <a href="#"><i class="fa fa-star-half-o"></i></a>
+					</div>
+				</div>
+			</div>
+			<div class="media testimonial_item">
+				<img class="rounded-circle" src="image/testtimonial-1.jpg" alt="" />
+				<div class="media-body">
+					<p>As conscious traveling Paupers we must always be concerned about our dear Mother Earth. If you think about it, you travel across
+						her face, and She is the</p>
+					<a href="#"><h4 class="sec_h4">Fanny Spencer</h4></a>
+					<div class="star">
+						<a href="#"><i class="fa fa-star"></i></a> <a href="#"><i class="fa fa-star"></i></a> <a href="#"><i class="fa fa-star"></i></a> <a
+							href="#"><i class="fa fa-star"></i></a> <a href="#"><i class="fa fa-star-half-o"></i></a>
+					</div>
+				</div>
+			</div>
+			<div class="media testimonial_item">
+				<img class="rounded-circle" src="image/testtimonial-1.jpg" alt="" />
+				<div class="media-body">
+					<p>As conscious traveling Paupers we must always be concerned about our dear Mother Earth. If you think about it, you travel across
+						her face, and She is the</p>
+					<a href="#"><h4 class="sec_h4">Fanny Spencer</h4></a>
+					<div class="star">
+						<a href="#"><i class="fa fa-star"></i></a> <a href="#"><i class="fa fa-star"></i></a> <a href="#"><i class="fa fa-star"></i></a> <a
+							href="#"><i class="fa fa-star"></i></a> <a href="#"><i class="fa fa-star-half-o"></i></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</section>
+	<!--================ Testimonial Area  =================-->
+
+	<!--================ Latest Blog Area  =================-->
+	<section class="latest_blog_area section_gap">
+	<div class="container">
+		<div class="section_title text-center">
+			<h2 class="title_color">latest posts from blog</h2>
+			<p>The French Revolution constituted for the conscience of the dominant aristocratic class a fall from</p>
+		</div>
+		<div class="row mb_30">
+			<div class="col-lg-4 col-md-6">
+				<div class="single-recent-blog-post">
+					<div class="thumb">
+						<img class="img-fluid" src="image/blog/blog-1.jpg" alt="post" />
+					</div>
+					<div class="details">
+						<div class="tags">
+							<a href="#" class="button_hover tag_btn">Travel</a> <a href="#" class="button_hover tag_btn">Life Style</a>
+						</div>
+						<a href="#"><h4 class="sec_h4">Low Cost Advertising</h4></a>
+						<p>Acres of Diamonds… you’ve read the famous story, or at least had it related to you. A farmer.</p>
+						<h6 class="date title_color">31st January,2018</h6>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-6">
+				<div class="single-recent-blog-post">
+					<div class="thumb">
+						<img class="img-fluid" src="image/blog/blog-2.jpg" alt="post" />
+					</div>
+					<div class="details">
+						<div class="tags">
+							<a href="#" class="button_hover tag_btn">Travel</a> <a href="#" class="button_hover tag_btn">Life Style</a>
+						</div>
+						<a href="#"><h4 class="sec_h4">Creative Outdoor Ads</h4></a>
+						<p>Self-doubt and fear interfere with our ability to achieve or set goals. Self-doubt and fear are</p>
+						<h6 class="date title_color">31st January,2018</h6>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-6">
+				<div class="single-recent-blog-post">
+					<div class="thumb">
+						<img class="img-fluid" src="image/blog/blog-3.jpg" alt="post" />
+					</div>
+					<div class="details">
+						<div class="tags">
+							<a href="#" class="button_hover tag_btn">Travel</a> <a href="#" class="button_hover tag_btn">Life Style</a>
+						</div>
+						<a href="#"><h4 class="sec_h4">It S Classified How To Utilize Free</h4></a>
+						<p>Why do you want to motivate yourself? Actually, just answering that question fully can</p>
+						<h6 class="date title_color">31st January,2018</h6>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</section>
+	<!--================ Recent Area  =================-->
+
+	<!--================ start footer Area  =================-->
+<footer class="footer-area section_gap">
+	<div class="container">
+		<div class="row">
+			<div style="margin-bottom: 50px !important;" align="center" class="col-md-12 col-sm-12">
+				<p:graphicImage value="/pages/royal-master/image/Jo.png" width="350px" height="auto" />
+
+			</div>
+			<div class="col-lg-3  col-md-6 col-sm-6">
+				<div class="single-footer-widget">
+					<h6 class="footer_title">About JoSummer</h6>
+					<p>The world has become so fast paced that people don’t want to stand by reading a page of information, they would much rather look
+						at a presentation and understand the message. It has come to a point</p>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-6 col-sm-6">
+				<div class="single-footer-widget">
+					<h6 class="footer_title">Navigation Links</h6>
+					<div class="row">
+						<div class="col-4">
+							<ul class="list_style">
+								<li><a href="#">Home</a></li>
+								<li><a href="#">Feature</a></li>
+								<li><a href="#">Services</a></li>
+								<li><a href="#">Portfolio</a></li>
+							</ul>
+						</div>
+						<div class="col-4">
+							<ul class="list_style">
+								<li><a href="#">Team</a></li>
+								<li><a href="#">Pricing</a></li>
+								<li><a href="#">Blog</a></li>
+								<li><a href="#">Contact</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-6 col-sm-6">
+				<div class="single-footer-widget">
+					<h6 class="footer_title">Newsletter</h6>
+					<p>For business professionals caught between high OEM price and mediocre print and graphic output,</p>
+					<div id="mc_embed_signup">
+						<form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
+							method="get" class="subscribe_form relative">
+							<div class="input-group d-flex flex-row">
+								<input name="EMAIL" placeholder="Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address '"
+									required="" type="email" />
+								<button class="btn sub-btn">
+									<span class="lnr lnr-location"></span>
+								</button>
+							</div>
+							<div class="mt-10 info"></div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-6 col-sm-6">
+				<div class="single-footer-widget instafeed">
+					<h6 class="footer_title">InstaFeed</h6>
+					<ul class="list_style instafeed d-flex flex-wrap">
+						<li><img src="image/instagram/Image-01.jpg" alt="" /></li>
+						<li><img src="image/instagram/Image-02.jpg" alt="" /></li>
+						<li><img src="image/instagram/Image-03.jpg" alt="" /></li>
+						<li><img src="image/instagram/Image-04.jpg" alt="" /></li>
+						<li><img src="image/instagram/Image-05.jpg" alt="" /></li>
+						<li><img src="image/instagram/Image-06.jpg" alt="" /></li>
+						<li><img src="image/instagram/Image-07.jpg" alt="" /></li>
+						<li><img src="image/instagram/Image-08.jpg" alt="" /></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="border_line"></div>
+		<div class="row footer-bottom d-flex justify-content-between align-items-center">
+			<p class="col-lg-8 col-sm-12 footer-text m-0">
+				<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+				Copyright
+				&copy;
+				<script>
+					document.write(new Date().getFullYear());
+				</script>
+				All rights reserved
+				<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+			</p>
+			<div class="col-lg-4 col-sm-12 footer-social">
+				<a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i class="fa fa-twitter"></i></a> <a href="#"><i class="fa fa-dribbble"></i></a>
+				<a href="#"><i class="fa fa-behance"></i></a>
+			</div>
+		</div>
+	</div>
+	</footer>
+	<!--================ End footer Area  =================-->
+
+
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	
+	<script src="js/popper.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="vendors/owl-carousel/owl.carousel.min.js"></script>
+	<script src="js/jquery.ajaxchimp.min.js"></script>
+	<script src="js/mail-script.js"></script>
+	<script src="vendors/bootstrap-datepicker/bootstrap-datetimepicker.min.js"></script>
+	<script src="vendors/nice-select/js/jquery.nice-select.js"></script>
+	<script src="js/mail-script.js"></script>
+	<script src="js/stellar.js"></script>
+	<script src="vendors/lightbox/simpleLightbox.min.js"></script>
+	<script src="js/custom.js"></script>
+</h:body>
+</html>

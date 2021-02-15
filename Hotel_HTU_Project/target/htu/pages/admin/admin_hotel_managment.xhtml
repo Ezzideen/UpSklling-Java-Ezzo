@@ -1,0 +1,277 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:p="http://primefaces.org/ui">
+<h:head>
+
+	<title>JoSummer</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js'></script>
+	
+	
+	
+	
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script >
+jQuery.curCSS = function(element, prop, val) {
+    return jQuery(element).css(prop, val);
+};
+
+
+</script>
+	<style>
+
+#border-Style {
+	background: #414042;
+	color: white;
+	
+}
+
+
+
+body {
+	background-color: #414042;
+}
+
+
+</style>
+</h:head>
+<h:body style="background: #414042">
+	<div style="background: rgba(38, 38, 38, 1); margin-bottom: 100px;" class="header">
+		<div style="background: rgba(38, 38, 38, 1);" class="navbar navbar-inverse navbar-fixed-top">
+			<div style="background: rgba(38, 38, 38, 1);" class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="#">JoSummer</a>
+				</div>
+				<h:form>
+					<div class="navbar navbar-default navbar-fixed-top">
+						<div >
+							<div style="background: rgba(38, 38, 38, 1);" class="navbar-header">
+								<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+									<span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+								</button>
+								<p:graphicImage style="margin-top: 10px; margin-left: 10px; margin-right: 20px;" value="/plugins/images/Jo.png" width="110px"
+									height="40px" />
+								<p:commandLink value="Website" />
+							</div>
+							<div style="background: rgba(38, 38, 38, 1);" class="collapse navbar-collapse" id="myNavbar">
+								<ul style="margin-right: 10px" class="nav navbar-nav navbar-right">
+									<li><p:commandLink value="Home" /></li>
+									<li><p:commandLink value="Administration" /></li>
+									<li><p:commandLink value="Status" /></li>
+									<li><p:commandLink value="Users" /></li>
+									<li><p:commandLink value="LogOut" /></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</h:form>
+			</div>
+		</div>
+	</div>
+
+	<div class="container-fluid text-center">
+		<div class="row content">
+			<div class="col-sm-2 sidenav" id="border-Style">
+
+				<div style="background: #414042; position: fixed;">
+					<h:form>
+						<p:growl>
+							<p:autoUpdate />
+						</p:growl>
+
+						<p:panelMenu style="width:250px">
+							<p:submenu label="General">
+								<p:menuitem value="Hotel Management"  icon="pi pi-user-plus" />
+								<p:menuitem value="Company Management"  icon="pi pi-id-card" />
+								<p:menuitem value="Website Management" icon="pi pi-id-card" />
+							</p:submenu>
+							<p:submenu label="User Management">
+								<p:menuitem value="Employee" action="#{menuView.delete}" ajax="false" icon="pi pi-times" />
+								<p:menuitem value="Users" action="#{menuView.delete}" ajax="false" icon="pi pi-times" />
+								<p:menuitem value="Guest" action="#{menuView.delete}" ajax="false" icon="pi pi-times" />
+							</p:submenu>
+							<p:submenu label="Payments">
+								<p:menuitem value="Payments Management"  icon="pi pi-user-plus" />
+								<p:menuitem value="Total Payments"  icon="pi pi-id-card" />
+							</p:submenu>
+							<p:separator />
+						</p:panelMenu>
+					</h:form>
+				
+				</div>
+
+			</div>
+			<div class="col-sm-10 text-left">
+
+				<div class="well" id="border-Style">
+
+					<div class="card">
+					<h:form id="hotel-form">
+					<div class="row">
+					<div align="left" class="col-sm-6">
+						<h4>Hotel Management</h4>
+						
+						</div>
+						<div align="right" class="col-sm-6">
+						<p:panelGrid id="button" columns="5" layout="grid" styleClass="showcase-text-align-center">
+						 <p:commandButton rendered="#{mbHotel.readOnlyMode}" actionListener="#{mbHotel.setEditMode}"  value="Edit" process="@this,Hotel-Data" update="@this,hotel-table, Hotel-Data, button" />
+						 <p:commandButton value="Rest All" action="#{mbHotel.rest}" process="@this,Hotel-Data,button" update="@this,hotel-table,Hotel-Data,button" />
+						 <p:commandButton rendered="#{mbHotel.addMode}" value="Add" action="#{mbHotel.addHotel}" process="@this,Hotel-Data" update="@this,hotel-table,Hotel-Data" />
+						 <p:commandButton rendered="#{mbHotel.editMode}" value="Update" action="#{mbHotel.updateHotel}" process="@this,Hotel-Data" update="@this,hotel-table,Hotel-Data" />
+						 <p:commandButton rendered="#{mbHotel.editMode}" value="Delete" action="#{mbHotel.deleteHotel}" process="@this,Hotel-Data" update="@this,hotel-table,Hotel-Data" />
+						</p:panelGrid>  
+						</div>
+						 </div>
+						<p:panelGrid id="Hotel-Data" columns="4" layout="grid" styleClass="showcase-text-align-center">
+						
+						<p:outputLabel value="Hotel Name" />
+							<p:inputText disabled="#{mbHotel.readOnlyMode}" value="#{mbHotel.hotel.name}" />
+							
+							
+							<p:outputLabel value="Company" />
+								<p:selectOneMenu  disabled="#{mbHotel.readOnlyMode}" id="dData1" value="#{mbHotel.hotel.company.id}" >
+									<f:selectItem itemLabel="Select Company" itemValue="#{null}" />
+									<f:selectItems id="selectItems1" value="#{mbCompany.listCompany}" var="Company" itemLabel="#{Company.name}"
+										itemValue="#{Company.id}" />
+								</p:selectOneMenu>
+								
+								
+							<p:outputLabel value="City" />
+								<p:selectOneMenu disabled="#{mbHotel.readOnlyMode}" id="dData2" value="#{mbHotel.hotel.city.id}" >
+									<f:selectItem itemLabel="Select City" itemValue="#{null}" />
+									<f:selectItems id="selectItems2" value="#{mbCity.listCity}" var="City" itemLabel="#{City.name}"
+										itemValue="#{City.id}" />
+								</p:selectOneMenu>
+								
+								
+							<p:outputLabel value="Category" />
+								<p:selectOneMenu disabled="#{mbHotel.readOnlyMode}" id="dData3" value="#{mbHotel.hotel.category.id}" >
+									<f:selectItem itemLabel="Select Category" itemValue="#{null}" />
+									<f:selectItems id="selectItems3" value="#{mbCategory.listCategory}" var="Category" itemLabel="#{Category.name}"
+										itemValue="#{Category.id}" />
+								</p:selectOneMenu>
+								
+							<p:outputLabel value="Status" />
+							<p:selectBooleanButton disabled="#{mbHotel.readOnlyMode}" value="#{mbHotel.hotel.is_active}" onLabel="Available" offLabel="Not Available"
+                                onIcon="pi pi-check" offIcon="pi pi-times" style="width:15rem" />
+                                
+                                
+							<p:outputLabel value="Rate" />
+							 <p:rating disabled="#{mbHotel.readOnlyMode}" value="#{mbHotel.hotel.rate}"/>
+							
+							</p:panelGrid>
+							
+						
+					
+							<p:dataTable id="hotel-table" value="#{mbHotel.listHotel}" var="hotel" selection="#{mbHotel.hotel}" selectionMode="single"
+								rowKey="#{hotel.id}" rows="5" paginator="true" size="small">
+								
+								
+								
+								<p:ajax  event="rowSelect" update="hotel-form:Hotel-Data, hotel-form:button" listener="#{mbHotel.setReadOnlyMode()}" />
+								
+								
+								<f:facet name="header">Hotels</f:facet>
+								<p:column width="50px;" headerText="ID" filterBy="#{hotel.id}" filterMatchMode="contains" sortBy="#{hotel.id}">
+									#{hotel.id}
+								</p:column>
+								<p:column width="100px;" headerText="Name" filterBy="#{hotel.name}" filterMatchMode="contains" sortBy="#{hotel.name}">
+									#{hotel.name}
+								</p:column>
+								<p:column width="100px;" headerText="City" filterBy="#{hotel.city}">
+									#{hotel.city.name}
+								</p:column>
+								<p:column width="100px;" headerText="Category" filterBy="#{hotel.category}">
+									#{hotel.category.name}
+								</p:column>
+								<p:column width="100px;" headerText="Company" filterBy="#{hotel.company}">
+									#{hotel.company.name}
+								</p:column>
+								<p:column width="100px;" headerText="is_active" filterBy="#{hotel.is_active}" filterMatchMode="contains" sortBy="#{hotel.is_active}">
+									#{hotel.is_active}
+								</p:column>
+								<p:column width="50px;" headerText="Rate" filterBy="#{hotel.rate}">
+									#{hotel.rate}
+								</p:column>
+								
+							</p:dataTable>
+							
+							
+								<div style="margin-top: 70px;" class="row">
+					<div align="left" class="col-sm-6">
+						<h4>Hotel Description</h4>
+						
+						</div>
+						<div align="right" class="col-sm-6">
+						<p:panelGrid id="button-tow" columns="5" layout="grid" styleClass="showcase-text-align-center">
+						 <p:commandButton rendered="#{mbHotel.readOnlyMode}" actionListener="#{mbHotel.setEditMode}"  value="Edit" process="@this,Hotel-Data-tow" update="@this,hotel-table-tow, Hotel-Data-tow, button-tow" />
+						 <p:commandButton value="Rest All" action="#{mbHotel.rest}" process="@this,Hotel-Data-tow, button-tow" update="@this,hotel-table-tow, Hotel-Data-tow, button-tow" />
+						 <p:commandButton rendered="#{mbHotel.addMode}" value="Add" action="#{mbHotel.addHotel}" process="@this,Hotel-Data-tow" update="@this,hotel-table-tow, Hotel-Data-tow, button-tow" />
+						 <p:commandButton rendered="#{mbHotel.editMode}" value="Update" action="#{mbHotel.updateHotel}" process="@this,Hotel-Data-tow" update="@this,hotel-table-tow, Hotel-Data-tow" />
+						 <p:commandButton rendered="#{mbHotel.editMode}" value="Delete" action="#{mbHotel.deleteHotel}" process="@this,Hotel-Data-tow" update="@this,hotel-table-tow, Hotel-Data-tow" />
+						</p:panelGrid>  
+						</div>
+						 </div>
+						<p:panelGrid id="Hotel-Data-tow" columns="2" layout="grid" styleClass="showcase-text-align-center">
+						
+						<p:outputLabel value="Hotel Name" />
+							<p:inputText disabled="true" value="#{mbHotel.hotel.name}" />
+							
+							<p:outputLabel value="hotel Description" />
+							<p:inputTextarea style="width: 300px; height: 100px;" disabled="#{mbHotel.readOnlyMode}" value="#{mbHotel.hotel.description}" />
+							
+							
+							</p:panelGrid>
+							
+							
+							
+							
+							
+							
+							<p:dataTable id="hotel-table-tow" value="#{mbHotel.listHotel}" var="hotel" selection="#{mbHotel.hotel}" selectionMode="single"
+								rowKey="#{hotel.id}" rows="5" paginator="true" size="small">
+								
+								
+								
+								<p:ajax  event="rowSelect" update="hotel-form:Hotel-Data-tow, hotel-form:button-tow" listener="#{mbHotel.setReadOnlyMode()}" />
+								<f:facet name="header">Hotels Description</f:facet>
+								
+								<p:column width="50px;" headerText="ID" filterBy="#{hotel.id}" filterMatchMode="contains" sortBy="#{hotel.id}">
+									#{hotel.id}
+								</p:column>
+								
+								<p:column width="100px;" headerText="Name" filterBy="#{hotel.name}" filterMatchMode="contains" sortBy="#{hotel.name}">
+									#{hotel.name}
+								</p:column>
+								
+								<p:column headerText="Description" filterBy="#{hotel.description}">
+									#{hotel.description}
+								</p:column>
+							</p:dataTable>
+						</h:form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	
+		<div  style="background: rgba(38, 38, 38, 1); margin-top: 20px;" class="container-fluid">
+  <div class="row">
+    <div align="center" class="col-sm-12">
+          <p:graphicImage styleClass="image" value="/plugins/images/Jo.png" width="250px" height="130px" style="margin-top: 30px;"  />
+    </div>
+    <div align="center"  class="col-sm-12">
+          <p:outputLabel style="color: white" value="JoSummer.com" />
+    </div>
+  </div>
+</div>
+
+</h:body>
+</html>

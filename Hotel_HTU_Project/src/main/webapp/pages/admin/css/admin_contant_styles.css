@@ -1,0 +1,142 @@
+	.content-body{
+	
+background: linear-gradient(10deg, rgba(255,255,255,1) 0%, rgba(212,212,212,1) 100%);
+	}
+	
+body .ui-widget:not(.pi), body .ui-widget .ui-widget:not(.pi) {
+	font-family: "Open Sans", "Helvetica Neue", sans-serif;
+	font-size: 1.0em;
+}
+
+.box1 {
+background: white;
+	font-size: 1.5em;
+	text-align:center;
+	border-left: 6px blue;
+	border-left-style: solid;
+	margin-right: 20px;
+	margin-top: 20px;
+	border-radius: 7px;
+	width: 260px !important;
+	height: 70px !important;
+}
+
+.box2 {
+	background: white;
+	font-size: 1.5em;
+	text-align:center;
+	border-left: 6px blue;
+	border-left-style: solid;
+	margin-right: 20px;
+	margin-top: 20px;
+	border-radius: 7px;
+	width: 260px !important;
+	height: 70px !important;
+}
+
+.box3 {
+	background: white;
+	font-size: 1.5em;
+	text-align:center;
+	border-left: 6px blue;
+	border-left-style: solid;
+	margin-right: 20px;
+	margin-top: 20px;
+	border-radius: 7px;
+	width: 260px !important;
+	height: 70px !important;
+}
+
+.box4 {
+	background: white;
+	font-size: 1.5em;
+	text-align:center;
+	border-left: 6px blue;
+	border-left-style: solid;
+	margin-right: 20px;
+	margin-top: 20px;
+	border-radius: 7px;
+	width: 260px !important;
+	height: 70px !important;
+}
+
+.box5 {
+   background: white;
+	font-size: 1.5em;
+	text-align:center;
+	border-left: 6px blue;
+	border-left-style: solid;
+	margin-right: 20px;
+	margin-top: 20px;
+	border-radius: 7px;
+	width: 260px !important;
+	height: 70px !important;
+}
+
+.box6 {
+	background: white;
+	font-size: 1.5em;
+	text-align:center;
+	border-left: 6px blue;
+	border-left-style: solid;
+	margin-right: 20px;
+	margin-top: 20px;
+	border-radius: 7px;
+	width: 260px !important;
+	height: 70px !important;
+}
+.ui_selectonemenu
+
+.box7 {
+	background: white;
+	font-size: 1.5em;
+	text-align:center;
+	border-left: 6px blue;
+	border-left-style: solid;
+	margin-right: 20px;
+	margin-top: 20px;
+	border-radius: 7px;
+	width: 260px !important;
+	height: 70px !important;
+}
+
+.box8 {
+	background: white;
+	font-size: 1.5em;
+	text-align:center;
+	border-left: 6px blue;
+	border-left-style: solid;
+	margin-right: 20px;
+	margin-top: 20px;
+	border-radius: 7px;
+	width: 260px !important;
+	height: 70px !important;
+}
+
+td {
+    display: table-cell;
+    vertical-align: inherit;
+}
+
+body .ui-datatable .ui-datatable-data>tr {
+    background-color: #424242;
+    color: #dedede;
+    border: 1px solid #ffffff;
+}
+
+.ui-datatable table {
+    border-collapse: collapse;
+    width: 90%;
+    table-layout: fixed;
+}
+
+body .ui-datatable thead th {
+    background-color: #424242;
+    border: 1px solid #ffffff;
+    color: #dedede; 
+    padding: .571em .857em;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+}
+

@@ -1,0 +1,233 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:p="http://primefaces.org/ui">
+<h:head>
+
+
+	<title>JoSummer</title>
+	<h:messages></h:messages>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="/plugins/images"/>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<style>
+	.box,
+    .sample-layout > div {
+        background-color: #cce4f7;
+        text-align: center;
+        padding-top: 1em;
+        padding-bottom: 1em;
+        border-radius: 4px;
+        color: #30383c;
+    }
+
+    .box-stretched {
+        height: 100%;
+        box-sizing: border-box;
+    }
+
+    .sample-layout {
+        margin: 0;
+    }
+
+    .sample-layout > div {
+        border: 1px solid #ffffff;
+    }
+
+    .vertical-container {
+        margin: 0;
+        height: 200px;
+        background: #efefef;
+        border-radius: 4px;
+    }
+
+    .nested-grid .p-col-4 {
+        padding-bottom: 1em;
+    }
+
+    .doc-table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    .doc-table th {
+        background-color: #cce4f7;
+    }
+
+    .doc-table td,
+    .doc-table th {
+        border: 1px solid #e5ebf0;
+        text-align: left;
+        padding: 8px;
+    }
+
+    .doc-table tr:nth-child(odd) {
+        background-color: #f3f6f9;
+    }
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+body .ui-button {
+    flex:auto;
+	background-color: inherit;
+	border-color: black;
+	border-style: solid;
+	color: #ffffff;
+	border: 3px solid silver;
+	font-size: 14px;
+	outline: 0 none;
+	transition: background-color .2s;
+	width: 170px;
+	height: 50px;
+	cue-after: none;
+	cue-before: none;
+	
+	
+}
+
+body .ui-button.ui-state-hover {
+	background-color: #64C7FF;
+	border-color: black;
+	color: black;
+	width: 170px;
+	height: 50px;
+	
+}
+
+body .ui-button.ui-state-active {
+	background-color: #64C7FF;
+	border-color: black;
+	color: black;
+    width: 170px;
+	height: 50px;
+	
+}
+
+body .ui-button.ui-state-focus {
+	background-color: #64C7FF;
+	border-color: black;
+	color: black;
+	width: 170px;
+	height: 50px;
+	
+}
+
+body a {
+	color: #ffb300;
+	text-decoration: none;
+}
+
+body .ui-toolbar {
+	border: 0px solid #191919;
+	background-image: inherit;
+	background:inherit;
+	background-color: inherit;
+	color: #dedede;
+	flex:auto;
+	padding: .0em 0em .920em 0em;
+	padding-bottom: 0px;
+	
+}
+.ui-toolbar1 {
+padding-bottom: 15px !important;
+}
+
+body .ui-widget:not(.pi), body .ui-widget .ui-widget:not(.pi) {
+	font-family: "Open Sans", "Helvetica Neue", sans-serif;
+	font-size: 20px;
+	
+}
+
+body .ui-widget, body .ui-widget .ui-widget {
+	text-decoration: none;
+}
+
+.MainDiv {
+background: inherit;
+}
+
+.ui-helper-clearfix:before, .ui-helper-clearfix:after {
+	content: "";
+	display: table;
+}
+
+button, input, optgroup, select, textarea {
+	color: inherit;
+	font: inherit;
+	margin: 0;
+	
+}
+
+body .ui-corner-all {
+	border-radius: 0px;
+}
+</style>
+</h:head>
+<h:body>
+<div style="background: inherit;" class="container-fluid">
+<div class="container-fluid">
+	<div class="card">
+		<p:toolbar styleClass="ui-toolbar1">
+			<f:facet name="left">
+				<p:graphicImage value="/plugins/images/Jo.png" title="JoSummer" width="170" height="80" />
+				<span></span>
+				<i></i>
+			</f:facet>
+			<f:facet name="right">
+			
+				<h:form>
+				<p:growl id="messages" showDetail="true" />
+					<!--  <p:commandButton type="button" value="Logout" icon="pi pi-sign-out" action="#{mbLogin.logOut}" />-->
+					<p:commandButton style="border: 0px solid silver !important;" value="Login" icon="pi pi-sign-in" action="#{mbHome.goToLogin}" />
+				
+					
+				</h:form>
+			</f:facet>
+		</p:toolbar>
+			</div>
+<div class="card">
+		<h:form>
+			
+
+			<p:toolbar>
+				<f:facet name="left">
+					<p:commandButton  type="button" value="Home" icon="pi pi-home" styleClass="p-mr-2" />
+					<p:commandButton type="button" value="Hotel" icon="pi pi-folder-open" styleClass="ui-button-success" />
+					<p:commandButton type="button" value="Reservations" title="Reservations" icon="pi pi-save" styleClass="ui-button-help p-mr-2" />
+					<p:commandButton type="button" value="Contact" title="Contact" icon="pi pi-user" styleClass="ui-button-warning p-mr-2" />
+					<p:commandButton style="" type="button" value="About us" title="About" icon="pi pi-users" styleClass="ui-button-danger" />
+					<!--  <span class="ui-separator"></span>
+					 <i class="ui-icon pi pi-ellipsis-v"></i>   -->
+
+				</f:facet>
+
+				<f:facet name="right">
+
+					
+					<p:outputLabel value="JoSummer" style="margin-left: 30px; margin-right: 30px; margin-top: 15px;" />
+				</f:facet>
+
+			</p:toolbar>
+		</h:form>
+	</div>
+</div>
+</div>
+</h:body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:p="http://primefaces.org/ui">
+<h:head>
+
+	<title>JoSummer Administration</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="css/admin_home-tow.css" />
+	<script type="text/javascript" src="/javax.faces.resource/datepicker/datepicker.js.jsf?ln=primefaces&amp;v=8.0" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js'></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+
+
+	<script>
+		jQuery.curCSS = function(element, prop, val) {
+			return jQuery(element).css(prop, val);
+		};
+	</script>
+
+
+</h:head>
+<h:body style="background: #414042">
+	<div style="background: rgba(38, 38, 38, 1); margin-bottom: 80px;" class="header">
+		<div style="background: rgba(38, 38, 38, 1);" class="navbar navbar-inverse navbar-fixed-top">
+			<div style="background: rgba(38, 38, 38, 1);" class="container-fluid">
+
+				<h:form>
+					<div class="navbar navbar-default navbar-fixed-top">
+						<div>
+							<div style="background: rgba(38, 38, 38, 1);" class="navbar-header">
+								<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+									<span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+								</button>
+								<p:graphicImage style="margin-top: 10px; margin-left: 10px; margin-right: 20px;" value="/plugins/images/Jo.png" width="110px"
+									height="40px" />
+								<p:commandLink value="Website" />
+							</div>
+							<div style="background: rgba(38, 38, 38, 1);" class="collapse navbar-collapse" id="myNavbar">
+								<ul style="margin-right: 10px" class="nav navbar-nav navbar-right">
+									<li><p:commandLink action="#{mbAdminAdministration.homeButton}" value="Home" /></li>
+									<li class="active"><p:commandLink value="Administration" action="#{mbAdminAdministration.adminsrationButton}" /></li>
+									<li><p:commandLink value="Status" /></li>
+									<li><p:commandLink value="Users" /></li>
+									<li><p:commandLink value="LogOut" /></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</h:form>
+			</div>
+		</div>
+	</div>
+
+
+
+	<div class="container-fluid">
+		<div class="row content">
+			<div class="col-sm-3 sidenav">
+				<h3>Admin Tools</h3>
+				<div class="card">
+					<h:form id="frm-admin">
+					<p:messages></p:messages>
+						<p:growl>
+							<p:autoUpdate />
+						</p:growl>
+
+						<p:panelMenu>
+							<p:submenu label="General">
+								<p:menuitem action="#{mbAdminAdministration.hotelManagementButton}" value="Hotel Management" icon="pi pi-user-plus" />
+								<p:menuitem action="#{mbAdminAdministration.companyManagementButton}" value="Company Management" icon="pi pi-id-card" />
+								<p:menuitem action="#{mbAdminAdministration.cityManagementButton}" value="City Management" icon="pi pi-id-card" />
+								<p:menuitem action="#{mbAdminAdministration.countryManagementButton}" value="Country Management" icon="pi pi-id-card" />
+								<p:menuitem action="#{mbAdminAdministration.categoryManagementButton}" value="Category Management" icon="pi pi-id-card" />
+								<p:menuitem action="#{mbAdminAdministration.roomTypeManagementButton}" value="RoomType Management" icon="pi pi-id-card" />								
+								<p:menuitem action="#{mbAdminAdministration.websiteManagementButton}" value="Website Management" icon="pi pi-id-card" />
+							</p:submenu>
+							<p:submenu label="User Management">
+								<p:menuitem value="Employee"  icon="pi pi-times" />
+								<p:menuitem value="Users" action="#{mbAdminAdministration.userManagementButton}" icon="pi pi-times" />
+								<p:menuitem value="Guest" icon="pi pi-times" />
+							</p:submenu>
+							<p:submenu label="Payments">
+								<p:menuitem value="Payments Management" icon="pi pi-user-plus" />
+								<p:menuitem value="Total Payments" icon="pi pi-id-card" />
+							</p:submenu>
+							<p:separator />
+						</p:panelMenu>
+
+
+						<div class="card">
+
+							<p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true" />
+
+							<h3 class="p-mt-0">Additional Information</h3>
+
+							<p:fieldset id="note-button" legend="Details" toggleable="true" toggleSpeed="500">
+								<p:commandButton rendered="#{mbAdminAdministration.addMode}" value="Add Note" action="#{mbAdminAdministration.addAdminEvent}"
+									process="@this,details" update="@this,frm-admin:note-button,frm-admin:admin-table" />
+								<p:commandButton rendered="#{mbAdminAdministration.editMode}" value="Update" action="#{mbAdminAdministration.updateAdmin}"
+									process="@this,details" update="@this,frm-admin:note-button,frm-admin:admin-table" />
+								<p:commandButton rendered="#{mbAdminAdministration.editMode}" value="Delete" action="#{mbAdminAdministration.deleteAdmin}"
+									process="@this,details" update="@this,frm-admin:note-button,frm-admin:admin-table" />
+								<hr />
+
+								<p:inputTextarea id="details" value="#{mbAdminAdministration.adminEvent.details}" />
+								<hr />
+
+								<p:dataTable paginatorPosition="bottom" paginatorAlwaysVisible="false" id="admin-table"
+									value="#{mbAdminAdministration.listAdminEvent}" var="admin" selection="#{mbAdminAdministration.adminEvent}" selectionMode="single"
+									rowKey="#{admin.id}" rows="5" paginator="true" size="small">
+
+
+
+									<p:ajax event="rowSelect" update="frm-admin:details,frm-admin:note-button" listener="#{mbAdminAdministration.setEditMode}" />
+
+
+									<f:facet name="header">Notes</f:facet>
+									<p:column width="10px;" headerText="ID">
+									#{admin.id}
+								</p:column>
+									<p:column width="100px;" headerText="Details">
+									#{admin.details}
+								</p:column>
+									<p:column width="90px;" headerText="Date">
+									#{admin.dateCreated}
+								</p:column>
+								</p:dataTable>
+
+							</p:fieldset>
+
+						</div>
+
+
+					</h:form>
+				</div>
+
+			</div>
+
+			<div id="well" class="col-sm-9">
+				<div id="welltow" class="card">
+					<h:form id="country-form">
+						<div class="row">
+							<div align="left" class="col-sm-6">
+								<h4>Country Management</h4>
+
+							</div>
+							<div style="margin-top: 10px" align="right" class="col-sm-6">
+								<p:panelGrid id="button" columns="5" layout="grid" styleClass="showcase-text-align-center">
+						 <p:commandButton rendered="#{mbAdminAdministration.readOnlyMode}" actionListener="#{mbAdminAdministration.setEditMode}"  value="Edit" process="@this,country-Data" update="@this,country-table, country-Data, button" />
+						 <p:commandButton value="Rest All" action="#{mbAdminAdministration.rest}" process="@this,country-Data,button,country-table" update="@this,country-table,country-Data,button,button" />
+						 <p:commandButton rendered="#{mbAdminAdministration.addMode}" value="Add" action="#{mbAdminAdministration.addCountry}" process="@this,country-Data" update="@this,country-table,country-Data,button" />
+						 <p:commandButton rendered="#{mbAdminAdministration.editMode}" value="Update" action="#{mbAdminAdministration.updateCountry}" process="@this,country-Data" update="@this,country-table,country-Data,button" />
+						 <p:commandButton rendered="#{mbAdminAdministration.editMode}" value="Delete" action="#{mbAdminAdministration.deleteCountry}" process="@this,country-Data" update="@this,country-table,country-Data,button" />
+						</p:panelGrid>  
+							</div>
+						</div>
+						<p:panelGrid id="country-Data" columns="4" layout="grid" styleClass="showcase-text-align-center">
+						
+						<p:outputLabel value="Country Name" />
+							<p:inputText disabled="#{mbAdminAdministration.readOnlyMode}" value="#{mbAdminAdministration.country.name}" />
+							
+							</p:panelGrid>
+							<p:dataTable id="country-table" value="#{mbAdminAdministration.listCountry}" var="Country" selection="#{mbAdminAdministration.country}" selectionMode="single"
+								rowKey="#{Country.id}" rows="5" paginator="true" size="small" >
+								
+								
+								
+								<p:ajax  event="rowSelect" update="country-form:country-Data, country-form:button" listener="#{mbAdminAdministration.setReadOnlyMode()}" />
+								
+								
+								<f:facet name="header">Countries</f:facet>
+								<p:column width="50px;" headerText="ID" filterBy="#{Country.id}" filterMatchMode="contains" sortBy="#{Country.id}">
+									#{Country.id}
+								</p:column>
+								<p:column width="100px;" headerText="Name" filterBy="#{Country.name}" filterMatchMode="contains" sortBy="#{Country.name}">
+									#{Country.name}
+								</p:column>
+							</p:dataTable>
+
+					</h:form>
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+	<div style="background: rgba(38, 38, 38, 1); margin-top: 20px;" class="container-fluid">
+		<div class="row">
+			<div align="center" class="col-sm-12">
+				<p:graphicImage styleClass="image" value="/plugins/images/Jo.png" width="250px" height="130px" style="margin-top: 30px;" />
+			</div>
+			<div align="center" class="col-sm-12">
+				<p:outputLabel style="color: white" value="JoSummer.com" />
+			</div>
+		</div>
+	</div>
+</h:body>
+</html>

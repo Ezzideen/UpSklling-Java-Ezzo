@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+ xmlns:h="http://java.sun.com/jsf/html"
+ xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+ <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+ <title>Home Page JoSummer</title>
+<style>
+td {
+    display: table-cell;
+    vertical-align: inherit;
+}
+
+body .ui-datatable .ui-datatable-data>tr {
+    background-color: #424242;
+    color: #dedede;
+    border: 1px solid #ffffff;
+}
+
+.ui-datatable table {
+    border-collapse: collapse;
+    width: 90%;
+    
+    table-layout: fixed;
+}
+
+body .ui-datatable thead th {
+    background-color: #424242;
+    border: 1px solid #ffffff;
+    color: #dedede; 
+    padding: .571em .857em;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+}
+
+ body .ui-widget:not(.pi), body .ui-widget .ui-widget:not(.pi) {
+    font-family: "Open Sans","Helvetica Neue",sans-serif;
+    font-size: 18px !important;
+}
+</style>
+</h:head>
+<h:body>
+ <div style="height: inherit;">
+ <div  style="height: 10px;">
+ <ui:insert name="header">
+ <ui:include src="admin_header.xhtml"></ui:include>
+ </ui:insert>
+ </div>
+ <div style="height: 100% !important;  background: linear-gradient(10deg, rgba(255,255,255,1) 0%, rgba(212,212,212,1) 100%);">
+ <ui:insert name="content">
+ <ui:include src="admin_contant.xhtml"></ui:include>
+ </ui:insert>
+ </div>
+ <div style="background: rgba(38,38,38,1) ; height: 100px; margin-top: 30px; margin-bottom: 30px;">
+ <ui:insert name="footer">
+ <ui:include src="admin_footer.xhtml"></ui:include>
+ </ui:insert>
+ </div>
+ </div>
+</h:body>
+</html>

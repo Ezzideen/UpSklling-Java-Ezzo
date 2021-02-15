@@ -1,0 +1,466 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:p="http://primefaces.org/ui">
+<h:head>
+
+	<title>JoSummer</title>
+	<p:messages></p:messages>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+	<style>
+.border-left-success {
+	border-left: .25rem solid #1cc88a !important;
+}
+
+.pb-2, .py-2 {
+	padding-bottom: .5rem !important;
+}
+
+.pt-2, .py-2 {
+	padding-top: .5rem !important;
+}
+
+.h-100 {
+	height: 100% !important;
+}
+
+.shadow {
+	box-shadow: 0 .15rem 1.75rem 0 rgba(58, 59, 69, .15) !important;
+}
+
+.card {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	min-width: 0;
+	word-wrap: break-word;
+	background-color: #fff;
+	background-clip: border-box;
+	border: 1px solid #e3e6f0;
+	border-radius: .35rem;
+}
+
+.text-gray-800 {
+	color: #5a5c69 !important;
+}
+
+.font-weight-bold {
+	font-weight: 700 !important;
+}
+
+.mb-0, .my-0 {
+	margin-bottom: 0 !important;
+}
+
+.h5, h5 {
+	font-size: 1.25rem;
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+	margin-bottom: .5rem;
+	font-weight: 400;
+	line-height: 1.2;
+}
+
+.card-body {
+	flex: 1 1 auto;
+	min-height: 1px;
+	padding: 1.25rem;
+}
+
+.text-xs {
+	font-size: 1.7rem;
+}
+
+.text-success {
+	color: #1cc88a !important;
+}
+
+.font-weight-bold {
+	font-weight: 700 !important;
+}
+
+.no-gutters {
+	margin-right: 0;
+	margin-left: 0
+}
+
+.align-items-center {
+	align-items: center !important
+}
+
+.border-left-primary {
+	border-left: .25rem solid #4e73df !important
+}
+
+.shadow {
+	box-shadow: 0 .15rem 1.75rem 0 rgba(58, 59, 69, .15) !important
+}
+
+.mb-4, .my-4 {
+	margin-bottom: 1.5rem !important
+}
+
+.col-xl-3 {
+	flex: 0 0 25%;
+	width: 320px;
+	margin-left: 20px;
+}
+
+.col-md-6 {
+	flex: 0 0 50%;
+	margin-left: 10px;
+}
+
+.col {
+	flex-basis: 0;
+	flex-grow: 1;
+	max-width: 100%
+}
+
+.mr-2, .mx-2 {
+	margin-right: .5rem !important
+}
+
+.mb-1, .my-1 {
+	margin-bottom: .25rem !important
+}
+
+.pt-2, .py-2 {
+	padding-top: .5rem !important
+}
+
+td {
+	display: table-cell;
+	vertical-align: inherit;
+}
+
+body .ui-datatable .ui-datatable-data>tr {
+	background-color: #424242;
+	color: #dedede;
+	border: 1px solid #ffb300;
+}
+
+.ui-datatable table {
+	border-collapse: collapse;
+	width: 90%;
+	table-layout: fixed;
+}
+
+body .ui-datatable thead th {
+	background-color: #424242;
+	border: 1px solid #ffb300;
+	color: #dedede;
+	padding: .571em .857em;
+	-webkit-box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	box-sizing: content-box;
+}
+body .ui-datatable .ui-datatable-header, body .ui-datatable .ui-datatable-footer {
+    background-color: #424242;
+    border: 1px solid #424242;
+    color: #dedede;
+   
+    font-weight: 400;
+}
+body .ui-widget:not(.pi), body .ui-widget .ui-widget:not(.pi) {
+    font-family: "Open Sans","Helvetica Neue",sans-serif;
+    font-size: 18px;
+}
+</style>
+</h:head>
+<h:body style="background: linear-gradient(10deg, rgba(255,255,255,1) 0%, rgba(196,255,254,1) 47%, rgba(230,255,255,1) 84%);">
+	<div style="background: rgba(38, 38, 38, 1);" class="header">
+		<div style="background: rgba(38, 38, 38, 1);" class="navbar navbar-inverse navbar-fixed-top">
+			<div style="background: rgba(38, 38, 38, 1);" class="container-fluid">
+				
+				<h:form>
+					<div class="navbar navbar-default navbar-fixed-top">
+						<div class="">
+							<div style="background: rgba(38, 38, 38, 1);" class="navbar-header">
+								<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+									<span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+								</button>
+								<p:graphicImage style="margin-top: 10px; margin-left: 10px; margin-right: 20px;" value="/plugins/images/Jo.png" width="110px" height="40px" />
+								<p:commandLink value="Website" />
+							</div>
+							<div style="background: rgba(38, 38, 38, 1);" class="collapse navbar-collapse" id="myNavbar">
+								<ul style="margin-right: 10px" class="nav navbar-nav navbar-right">
+									<li><p:commandLink value="Home" /></li>
+									<li><p:commandLink value="Administration" /></li>
+									<li><p:commandLink value="Status" /></li>
+									<li><p:commandLink value="Users" /></li>
+									<li><p:commandLink value="Logout" /></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</h:form>
+			</div>
+		</div>
+	</div>
+
+	<!-- Content of the Page -->
+	<div style="margin-top: 70px; margin-bottom: 20px;" class="row">
+
+		<!-- Earnings (Monthly) Card Example -->
+		<div class="col-xl-3 col-md-3 mb-4">
+			<div class="card border-left-primary shadow h-100 py-2">
+				<div class="card-body">
+					<div class="row no-gutters align-items-center">
+						<div class="col mr-2">
+							<div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Available Hotels</div>
+							<div class="h5 mb-0 font-weight-bold text-gray-800">
+								<p:outputLabel value="#{mbHotel.availableHotels}" />
+							</div>
+						</div>
+						<div class="col-auto">
+							<i class="fas fa-calendar fa-2x text-gray-300"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<!-- Earnings (Monthly) Card Example -->
+		<div class="col-xl-3 col-md-3 mb-4">
+			<div class="card border-left-primary shadow h-100 py-2">
+				<div class="card-body">
+					<div class="row no-gutters align-items-center">
+						<div class="col mr-2">
+							<div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Hotels</div>
+							<div class="h5 mb-0 font-weight-bold text-gray-800">
+								<p:outputLabel value="#{mbHotel.countHotels}" />
+							</div>
+						</div>
+						<div class="col-auto">
+							<i class="fas fa-calendar fa-2x text-gray-300"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Earnings (Monthly) Card Example -->
+		<div class="col-xl-3 col-md-3 mb-4">
+			<div class="card border-left-primary shadow h-100 py-2">
+				<div class="card-body">
+					<div class="row no-gutters align-items-center">
+						<div class="col mr-2">
+							<div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Reservations</div>
+							<div class="h5 mb-0 font-weight-bold text-gray-800">
+								<p:outputLabel value="#{mbReservation.countReservations}" />
+							</div>
+						</div>
+						<div class="col-auto">
+							<i class="fas fa-calendar fa-2x text-gray-300"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Earnings (Monthly) Card Example -->
+		<div class="col-xl-3 col-md-3 mb-4">
+			<div class="card border-left-primary shadow h-100 py-2">
+				<div class="card-body">
+					<div class="row no-gutters align-items-center">
+						<div class="col mr-2">
+							<div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Companies</div>
+							<div class="h5 mb-0 font-weight-bold text-gray-800">
+								<p:outputLabel value="#{mbCompany.countCompany}" />
+							</div>
+						</div>
+						<div class="col-auto">
+							<i class="fas fa-calendar fa-2x text-gray-300"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<!-- Earnings (Monthly) Card Example -->
+		<div class="col-xl-3 col-md-3 mb-4">
+			<div class="card border-left-primary shadow h-100 py-2">
+				<div class="card-body">
+					<div class="row no-gutters align-items-center">
+						<div class="col mr-2">
+							<div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Cities</div>
+							<div class="h5 mb-0 font-weight-bold text-gray-800">
+								<p:outputLabel value="#{mbCity.countCity}" />
+							</div>
+						</div>
+						<div class="col-auto">
+							<i class="fas fa-calendar fa-2x text-gray-300"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<!-- Earnings (Monthly) Card Example -->
+		<div class="col-xl-3 col-md-3 mb-4">
+			<div class="card border-left-primary shadow h-100 py-2">
+				<div class="card-body">
+					<div class="row no-gutters align-items-center">
+						<div class="col mr-2">
+							<div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Rooms</div>
+							<div class="h5 mb-0 font-weight-bold text-gray-800">
+								<p:outputLabel value="#{mbRoom.countRooms}" />
+							</div>
+						</div>
+						<div class="col-auto">
+							<i class="fas fa-calendar fa-2x text-gray-300"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Earnings (Monthly) Card Example -->
+		<div class="col-xl-3 col-md-3 mb-4">
+			<div class="card border-left-primary shadow h-100 py-2">
+				<div class="card-body">
+					<div class="row no-gutters align-items-center">
+						<div class="col mr-2">
+							<div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Guests</div>
+							<div class="h5 mb-0 font-weight-bold text-gray-800">
+								<p:outputLabel value="#{mbGuest.countGuests}" />
+							</div>
+						</div>
+						<div class="col-auto">
+							<i class="fas fa-calendar fa-2x text-gray-300"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Earnings (Monthly) Card Example -->
+		<div class="col-xl-3 col-md-3 mb-4">
+			<div class="card border-left-primary shadow h-100 py-2">
+				<div class="card-body">
+					<div class="row no-gutters align-items-center">
+						<div class="col mr-2">
+							<div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Hotels Categories</div>
+							<div class="h5 mb-0 font-weight-bold text-gray-800">
+								<p:outputLabel value="#{mbCategory.countCategory}" />
+							</div>
+						</div>
+						<div class="col-auto">
+							<i class="fas fa-calendar fa-2x text-gray-300"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div style="text-align: center; margin-bottom: 20px;" class="col-sm-12">
+
+			<h:form>
+				<p:outputLabel style="font-size: 20px;" value="Reservations" />
+				<div style="margin-top: 20px" align="center" class="">
+					<p:dataTable id="res" var="reservation" value="#{mbReservation.listReservation}">
+				
+						<p:column style="width: 20px !important;" headerText="id">
+							<h:outputText value="#{reservation.id}" />
+						</p:column>
+
+						<p:column headerText="Name">
+							<h:outputText value="#{reservation.guest.firstName}" />
+						</p:column>
+
+						<p:column headerText="Start Date">
+							<h:outputText value="#{reservation.startDate}" />
+						</p:column>
+
+						<p:column headerText="End Date">
+							<h:outputText value="#{reservation.endDate}" />
+						</p:column>
+
+						<p:column headerText="Created">
+							<h:outputText value="#{reservation.createdDate}" />
+						</p:column>
+
+						<p:column headerText="Updated">
+							<h:outputText value="#{reservation.updatedDate}" />
+						</p:column>
+
+						<p:column headerText="Discount">
+							<h:outputText value="#{reservation.discount}" />
+						</p:column>
+
+						<p:column headerText="Total Price">
+							<h:outputText value="#{reservation.totalPrice}" />
+						</p:column>
+					</p:dataTable>
+				</div>
+			</h:form>
+		</div>
+	</div>
+
+	<div style="margin-bottom: 50px; text-align: center;" class="row">
+		<div class="col-sm-12">
+			<p:outputLabel style="font-size: 20px; padding-bottom: -20px" value="Guests" />
+			<h:form>
+				<div style="margin-top: 20px" align="center" class="">
+					<p:dataTable var="guest" value="#{mbGuest.listGuest}">
+						<p:column style="width: 20px !important;" headerText="id">
+							<h:outputText value="#{guest.id}" />
+						</p:column>
+
+						<p:column headerText="Name">
+							<h:outputText value="#{guest.firstName}" />
+						</p:column>
+
+						<p:column headerText="Start Date">
+							<h:outputText value="#{guest.lastName}" />
+						</p:column>
+
+						<p:column style="width: 200px !important;" headerText="Email">
+							<h:outputText value="#{guest.email}" />
+						</p:column>
+
+						<p:column headerText="Created">
+							<h:outputText value="#{guest.phone}" />
+						</p:column>
+
+						<p:column headerText="Updated">
+							<h:outputText value="#{guest.address}" />
+						</p:column>
+
+						<p:column headerText="Discount">
+							<h:outputText value="#{guest.details}" />
+						</p:column>
+					</p:dataTable>
+				</div>
+			</h:form>
+
+
+
+		</div>
+		
+	</div>
+<div  style="background: rgba(38, 38, 38, 1); margin-top: 20px;" class="container-fluid">
+  <div class="row">
+    <div align="center" class="col-sm-12">
+          <p:graphicImage styleClass="image" value="/plugins/images/Jo.png" width="250px" height="130px" style="margin-top: 30px;"  />
+    </div>
+    <div align="center"  class="col-sm-12">
+          <p:outputLabel style="color: white" value="JoSummer.com" />
+    </div>
+  </div>
+</div>
+
+
+</h:body>
+</html>

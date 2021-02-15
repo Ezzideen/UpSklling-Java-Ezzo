@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui">
+<h:head>
+<p:messages></p:messages>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="/plugins/images" />
+
+</h:head>
+
+<body>
+
+<h:form id="frm">
+	<p:panelGrid id="reservation-data" columns="4" layout="grid" styleClass="showcase-text-align-center">
+	
+		<p:outputLabel value="Hotel" />
+		<p:selectOneMenu id="hotel-Data" value="#{mbReservation.reservation.hotel.id}">
+		<p:ajax event="valueChange" update="Room-Data"
+                />
+			<f:selectItem itemLabel="Select Hotel" itemValue="#{null}" />
+			<f:selectItems id="hotel-Data-selectItems" value="#{mbReservation.listHotel}" var="Hotel" itemLabel="#{Hotel.name}"
+				itemValue="#{Hotel.id}" />
+		</p:selectOneMenu>
+
+		<p:outputLabel value="Room Type" />
+		<p:selectOneMenu id="Room-Data" value="#{mbReservation.reservation.room.id}">
+		<p:ajax event="valueChange" update="price"
+                />
+			<f:selectItem itemLabel="Select RoomType" itemValue="#{null}" />
+			<f:selectItems id="Room-Data-selectItems" value="#{mbReservation.listRoomById}" var="Room" itemLabel="#{Room.roomType.name}"
+				itemValue="#{Room.id}" itemDescription="#{Room.description}" />
+				
+		</p:selectOneMenu>
+		
+		<p:outputLabel value="Check in" />
+		<p:datePicker value="#{mbReservation.reservation.startDate}" />
+		
+		<p:outputLabel value="Check out" />
+		<p:datePicker value="#{mbReservation.reservation.endDate}" />
+		<p:outputLabel value="Room Price : " />
+		<p:outputLabel id="price" value="#{mbReservation.roomPrice} JD" />
+
+</p:panelGrid>
+<p:panelGrid id="guest-data" columns="4" layout="grid" styleClass="showcase-text-align-center">
+			
+
+				<p:outputLabel value="first name" />
+				<p:inputText value="#{mbReservation.guest.firstName}" />
+
+				<p:outputLabel value="Last name" />
+				<p:inputText value="#{mbReservation.guest.lastName}" />
+
+				<p:outputLabel value="Email" />
+				<p:inputText value="#{mbReservation.guest.email}" />
+
+				<p:outputLabel value="Phone" />
+				<p:inputText value="#{mbReservation.guest.phone}" />
+
+				<p:outputLabel value="Address" />
+				<p:inputText value="#{mbReservation.guest.address}" />
+
+				<p:outputLabel value="Passport Number" />
+				<p:inputText value="#{mbReservation.guest.passport_number}" />
+
+		</p:panelGrid>
+		<p:commandButton action="#{mbReservation.addReservation}" process="@this,guest-data,reservation-data"
+				style="margin-bottom: 20px!important; margin-top: 20px!important; Font-Size: 20px!important;" styleClass="button button3"
+				value="Confirming Booking" />
+			
+</h:form>	
+
+
+	<!--  -->
+</body>
+</html>

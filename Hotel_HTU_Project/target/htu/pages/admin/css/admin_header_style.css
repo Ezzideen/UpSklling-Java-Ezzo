@@ -1,0 +1,20 @@
+.header-body {
+	background: linear-gradient(90deg, rgba(38,38,38,1) 0%, rgba(52,52,52,0.6278886554621849) 50%, rgba(38,38,38,1) 100%);
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    color: #333;
+    background-color: #fff;
+}
+.container-fluid {
+    padding-right: 0px;
+    padding-left: 0px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+
+.navbar-nav>li>a {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
